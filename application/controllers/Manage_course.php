@@ -31,6 +31,15 @@ class Manage_course extends CI_Controller {
 	    $layout['maincontent'] = $this->load->view('create_batch', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
+	public function create_duration()
+	{
+		$layout                = array();
+	    $layout['all_courses']   = $this->Course_model->getall_course();
+		$layout['all_batch']   = $this->Course_model->getall_batch();
+		 $layout['days']   = $this->Dashboard_model->system('5');
+	    $layout['maincontent'] = $this->load->view('create_duration', $layout, true);
+        $this->load->view('admin/layout', $layout);
+	}
 	public function save_course()
     {
         $data                       = array();

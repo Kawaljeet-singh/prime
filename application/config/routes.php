@@ -87,6 +87,7 @@ $route['course_list'] = 'Manage_course';
 $route['add_course'] = 'Manage_course/create_course';
 $route['delete_course/(:any)'] = 'Manage_course/delete_course/$1';
 $route['add_batch'] = 'Manage_course/create_batch';
+$route['duration'] = 'Manage_course/create_duration';
 $route['delete_batch/(:any)'] = 'Manage_course/delete_batch/$1';
 
 $route['Student_list']='Manage_student';

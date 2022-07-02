@@ -300,7 +300,10 @@
 												 <i class="bx bxs-add-to-queue "></i>
 												<span key="t-contacts">Add Batch</span>
 											</a>
-											
+											<a href="<?php echo base_url('duration');?>" class=" waves-effect">
+												 <i class="bx bxs-add-to-queue "></i>
+												<span key="t-contacts">Add Duration</span>
+											</a>
 										</li>
 									</ul>
 									
