@@ -88,11 +88,14 @@ $route['add_course'] = 'Manage_course/create_course';
 $route['delete_course/(:any)'] = 'Manage_course/delete_course/$1';
 $route['add_batch'] = 'Manage_course/create_batch';
 $route['duration'] = 'Manage_course/create_duration';
+$route['schedule'] = 'Manage_course/create_schedule';
 $route['delete_batch/(:any)'] = 'Manage_course/delete_batch/$1';
+$route['delete_due/(:any)'] = 'Manage_course/delete_due/$1';
 
 $route['Student_list']='Manage_student';
 $route['Visa_info_list']='Manage_study_visa';
 $route['idcard/(:any)']='Manage_student/idcard/$1';
+$route['student/(:any)']='Manage_student/student_info/$1';
 $route['walkins'] = 'Dashboard/walkins';
 $route['logout'] = 'Dashboard/logout';
 $route['admin_login_check'] = 'AdminLogin/admin_login_check';

@@ -8,7 +8,7 @@ class Student_model extends CI_Model
         $this->db->from('tbl_student');
         $this->db->join('tbl_enrollment','tbl_enrollment.en_stu_uuid=tbl_student.stu_uid');
         $this->db->join('tbl_fee','tbl_fee.fee_stu_id=tbl_student.stu_uid');
-        $this->db->where(array('tbl_student.stu_interest'=>'3','tbl_student.stu_status'=>'0'));
+        $this->db->where(array('tbl_student.stu_interest'=>'3','tbl_student.stu_status'=>'1'));
         $this->db->order_by('stu_id','DESC');
         $info = $this->db->get();
         return $info->result();
@@ -41,12 +41,15 @@ class Student_model extends CI_Model
          $this->db->insert('tbl_enrollment', $data);
 		return $this->db->insert_id();
     }
-    public function walkins_info($id)
+    public function student_info($id)
     {
         $this->db->select('*');
-        $this->db->from('tbl_student');
-         $this->db->join('tbl_enrollment','tbl_enrollment.en_stu_uuid=tbl_student.stu_uid');
-         $this->db->where(array('stu_uid'=> $id,'stu_status'=>'1'));
+        $this->db->from('tbl_enrollment');
+         $this->db->join('tbl_student','tbl_enrollment.en_stu_uuid=tbl_student.stu_uid');
+         $this->db->join('tbl_courses','tbl_enrollment.en_course=tbl_courses.cr_uuid');
+         $this->db->join('tbl_batch','tbl_enrollment.en_batch=tbl_batch.bt_uuid');
+         $this->db->join('tbl_duration','tbl_enrollment.en_duration=tbl_duration.due_uuid');
+         $this->db->where(array('tbl_enrollment.en_stu_uuid'=> $id,'stu_status'=>'1'));
         $info = $this->db->get();
         return $info->row();
     }

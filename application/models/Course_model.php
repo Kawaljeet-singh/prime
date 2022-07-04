@@ -23,10 +23,20 @@ class Course_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_duration');
+		$this->db->where('due_status','1');
         $info = $this->db->get();
         return $info->result();
     }
-
+  public function get_schedule()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_courses');
+        $this->db->join('tbl_batch','tbl_courses.cr_uuid=tbl_batch.bt_course_id');
+        $this->db->join('tbl_duration','tbl_batch.bt_uuid=tbl_duration.due_batch');
+        $this->db->where('tbl_batch.bt_status',1);
+        $info = $this->db->get();
+        return $info->result();
+    }
     public function save_course($data)
     {
 		$this->db->set('cr_uuid', 'UUID()', FALSE);
@@ -65,5 +75,11 @@ class Course_model extends CI_Model
         $this->db->set('bt_status', 0);
         $this->db->where('bt_uuid', $id);
         return $this->db->update('tbl_batch');
+    }
+	public function deactive_due($id)
+    {
+        $this->db->set('due_status', 0);
+        $this->db->where('due_uuid', $id);
+        return $this->db->update('tbl_duration');
     }
 }

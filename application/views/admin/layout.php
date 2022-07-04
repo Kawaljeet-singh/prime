@@ -17,6 +17,11 @@
         <!-- App Css-->
         <link href="<?php echo base_url('assets/css/app.min.css')?>" id="app-style" rel="stylesheet" type="text/css" />
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
+
+		<link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css" />
     </head>
 	<header id="page-topbar">
                 <div class="navbar-header">
@@ -290,19 +295,15 @@
 										<li>
 											<a href="<?php echo base_url('add_course');?>" class=" waves-effect">
 												 <i class="bx bxs-add-to-queue "></i>
-												<span key="t-contacts">Add Course</span>
+												<span key="t-contacts">Manage Course</span>
 											</a>
-											<a href="<?php echo base_url('course_list');?>" class=" waves-effect">
-												 <i class="bx bx bx-list-ul "></i>
-												<span key="t-contacts">All Course list</span>
-											</a>
-											 	<a href="<?php echo base_url('add_batch');?>" class=" waves-effect">
+											<a href="<?php echo base_url('add_batch');?>" class=" waves-effect">
 												 <i class="bx bxs-add-to-queue "></i>
-												<span key="t-contacts">Add Batch</span>
+												<span key="t-contacts">Manage Batch</span>
 											</a>
 											<a href="<?php echo base_url('duration');?>" class=" waves-effect">
 												 <i class="bx bxs-add-to-queue "></i>
-												<span key="t-contacts">Add Duration</span>
+												<span key="t-contacts">Manage Duration</span>
 											</a>
 										</li>
 									</ul>
@@ -429,7 +430,78 @@
         <script src="<?php echo base_url('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js');?>"></script>
 
         <!-- Datatable init js -->
-      
+      <script type="text/javascript">
+
+    $(".remove").click(function(){
+
+        var id = $(this).parents("tr").attr("id");
+        var url = $(this).attr("data-url");
+
+    
+
+       swal({
+
+        title: "Are you sure?",
+
+        text: "You will not be able to recover this data!",
+
+        type: "warning",
+
+        showCancelButton: true,
+
+        confirmButtonClass: "btn-danger",
+
+        confirmButtonText: "Yes, delete it!",
+
+        cancelButtonText: "No, cancel plx!",
+
+        closeOnConfirm: false,
+
+        closeOnCancel: false
+
+      },
+
+      function(isConfirm) {
+
+        if (isConfirm) {
+
+          $.ajax({
+
+             url: '<?php echo base_url();?>/'+ url +'/'+id,
+
+             type: 'DELETE',
+
+             error: function() {
+
+                alert('Something is wrong');
+
+             },
+
+             success: function(data) {
+
+                  $("#"+id).remove();
+
+                  swal("Deleted!", "Your data has been deleted.", "success");
+
+             }
+
+          });
+
+        } else {
+
+          swal("Cancelled", "Your data is safe :)", "error");
+
+        }
+
+      });
+
+     
+
+    });
+
+    
+
+</script>
         <script src="  https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
         <script src="<?php echo base_url('assets/js/app.js');?>"></script>
         <script src="<?php echo base_url('assets/js/pages/profile.init.js');?>"></script>

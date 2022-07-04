@@ -60,10 +60,10 @@
                                             </thead>
                                             <tbody>
                                                 <?php $i=0; foreach($all_batch as $item) { $i++;?>
-                                                <tr>
+                                                 <tr id="<?php echo $item->bt_uuid; ?>">
                                                     <td> <?php echo $i;?></td>
                                                    <td><h5><?php echo $item->cr_name;?> >> <?php echo $item->bt_name;?></h5></td>
-                                                     <td><a href="<?php echo base_url('delete_batch/'.$item->bt_uuid);?>" >Delete</a></h5></td>
+                                                      <td> <button type="submit" data-url="delete_batch" class="btn btn-danger remove"> Delete</button></td>
                                                 </tr>
                                                <?php } ?>
                                             </tbody>

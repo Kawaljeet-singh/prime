@@ -76,7 +76,7 @@
                                                         <td>
                                                         <ul class="list-inline font-size-20 contact-links mb-0">
                                                             <li class="list-inline-item px-2">
-                                                                    <a href="<?php echo base_url('preview/'.$stu->stu_uid);?>" title="Profile"><i class="bx bx-user-circle"></i></a>
+                                                                    <a href="<?php echo base_url('student/'.$stu->stu_uid);?>" title="Profile"><i class="bx bx-user-circle"></i></a>
                                                                 </li>
                                                                 <li class="list-inline-item px-2">
                                                                     <a href="<?php echo base_url('idcard/'.$stu->stu_uid);?>" title="ID Card"><i class="bx bx-printer"></i></a>

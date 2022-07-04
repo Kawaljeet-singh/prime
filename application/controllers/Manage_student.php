@@ -17,12 +17,19 @@ class Manage_student extends CI_Controller {
         $layout['maincontent'] = $this->load->view('add_walkins', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
+	public function student_info($id)
+	{
+		$layout                = array();
+        $layout['get_info']   = $this->Student_model->student_info($id);
+        $layout['maincontent'] = $this->load->view('student_info', $layout, true);
+        $this->load->view('admin/layout', $layout);
+	}
     public function idcard($id)
 	{
 		$layout                = array();
-        $layout['get_info']   = $this->Student_model->walkins_info($id);
-        $getinfo=$this->Student_model->walkins_info($id);
-        $this->load->view('idcard', $layout);
+        $layout['get_info']   = $this->Student_model->student_info($id);
+        $getinfo = $this->Student_model->student_info($id);
+        $html=$this->load->view('idcard', $layout);
         $html = $this->output->get_output();
         		// Load pdf library
 		$this->load->library('pdf');

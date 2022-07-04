@@ -8,14 +8,13 @@
                         <!-- end page title -->
 
                         <div class="row">
-                            <div class="col-xl-8">
+                            <div class="col-xl-6">
                                 <div class="card">
                                     <div class="card-body">
                                          <div class="row mb-5">
                                     <div class="col-12">
                                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                             <h4 class="mb-sm-0 font-size-18">Add Course</h4>
-                                            <?php echo $this->session->flashdata('message');?>
                                             <div class="page-title-right">
                                             </div>
                                         </div>
@@ -40,14 +39,43 @@
                                             </div>
                                         </form>
                                 </div>
-                                   
-                                        
                                     </div>
                                     <!-- end card body -->
                                 </div>
                                 <!-- end card -->
                             </div>
                             <!-- end col -->
+							
+							
+							 <div class="col-lg-6">
+                                <div class="card">
+                                <div class="card-body">
+                                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" style="width: 100px">#</th>
+                                                    <th scope="col">Course Name</th>
+                                                    <th scope="col">Course Type</th>
+                                                    <th scope="col">Action</th>
+                                                     
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i=0; foreach($all_courses as $item) { $i++;?>
+                                                <tr id="<?php echo $item->cr_uuid; ?>">
+                                                    <td><?php echo $i;?></td>
+													<td>
+                                                        <h5><?php echo $item->cr_name;?></h5>
+													</td>
+                                                    <td><h5><?php echo $item->cr_type;?></h5></td>
+                                                    <td><button type="submit" data-url="delete_cource" class="btn btn-danger remove"> Delete</button></td>
+                                                </tr>
+                                               <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div> <!-- container-fluid -->
                 </div>

@@ -36,8 +36,18 @@ class Manage_course extends CI_Controller {
 		$layout                = array();
 	    $layout['all_courses']   = $this->Course_model->getall_course();
 		$layout['all_batch']   = $this->Course_model->getall_batch();
-		 $layout['days']   = $this->Dashboard_model->system('5');
+        $layout['getall_duration']   = $this->Course_model->getall_duration();
+		$layout['days']   = $this->Dashboard_model->system('5');
 	    $layout['maincontent'] = $this->load->view('create_duration', $layout, true);
+        $this->load->view('admin/layout', $layout);
+	}public function create_schedule()
+	{
+		$layout                = array();
+	    $layout['all_courses']   = $this->Course_model->getall_course();
+		$layout['all_batch']   = $this->Course_model->getall_batch();
+        $layout['get_schedule']   = $this->Course_model->get_schedule();
+		$layout['days']   = $this->Dashboard_model->system('5');
+	    $layout['maincontent'] = $this->load->view('create_schedule', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
 	public function save_course()
@@ -85,9 +95,20 @@ class Manage_course extends CI_Controller {
         $data['due_batch'] = $this->input->post('b_id');
         $data['due_fee'] = $this->input->post('fee');
         $data['due_created_by'] = $this->session->userdata('user_uuid');
-        
-        $result = $this->Course_model->save_duration($data);
-        if ($result) {
+		$days=$this->input->post('days');
+		 
+		if(!empty($this->input->post('days')))
+		{
+			$week=array();
+			for ($i=0; $i < sizeof($days); $i++) 
+			{
+					$week[]=$days[$i];
+			}
+		}
+		$data['due_day'] = implode(',', $days);
+		$result = $this->Course_model->save_duration($data);
+		
+	    if ($result) {
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Record added successfully.
                                         </div>'); 
@@ -96,7 +117,7 @@ class Manage_course extends CI_Controller {
             Record created failed! Try again
                                         </div>'); 
         }
-        redirect('add_course');
+        redirect('duration');
     }
     public function save_schedule()
     {
@@ -167,6 +188,7 @@ class Manage_course extends CI_Controller {
         $layout['maincontent'] = $this->load->view('fee_details', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
+	
 	public function getname($id)
 	{
 	    if ($id !='')
@@ -240,6 +262,21 @@ class Manage_course extends CI_Controller {
             Record Delete failed! Try again
                                         </div>');
             redirect('add_batch');
+        }
+	}
+	public function delete_due($id)
+	{
+        $result = $this->Course_model->deactive_due($id);
+        if ($result) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Record Delete successfully.
+                                        </div>');
+            redirect('duration');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Record Delete failed! Try again
+                                        </div>');
+            redirect('duration');
         }
 	}
 }

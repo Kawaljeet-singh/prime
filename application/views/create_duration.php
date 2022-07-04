@@ -1,4 +1,5 @@
-            <div class="main-content">
+   
+			<div class="main-content">
 
                 <div class="page-content">
                     <div class="container-fluid">
@@ -32,7 +33,7 @@
                                                     </div>
 												</div>
 												<div class="col-md-8">
-													<div class="mb-3 ">
+													<div class="mb-3">
 														<label for="formrow-firstname-input" class="form-label">Duration</label>
 													     <select class="form-control" id="duration" name="duration">
 													           <option name="1 week">1 Week</option>
@@ -45,6 +46,19 @@
 													      </select>
                                                     </div>
 												</div>
+                                                <div class="col-md-8">
+                                                   <?php foreach($days as $day)
+                                                    {
+                                                        echo '<div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="'.$day->sc_id.'" name=
+														"days[]" id="flexCheckDefault">
+                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                          '.$day->sc_name.'
+                                                        </label>
+                                                      </div>';
+                                                    }
+                                                    ?>
+                                                </div>
 												<div class="col-md-8">
 													<div class="mb-3 ">
 														<label for="formrow-firstname-input" class="form-label">Fee</label>
@@ -68,16 +82,16 @@
                                                 <tr>
                                                     <th scope="col" >#</th>
                                                     <th scope="col">Name</th>
-                                                     <th scope="col">Action</th>
-                                                     
+                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $i=0; foreach($all_batch as $item) { $i++;?>
-                                                <tr>
+                                                <?php $i=0; foreach($getall_duration as $item) { $i++;?>
+                                                <tr id="<?php echo $item->due_uuid; ?>">
                                                     <td> <?php echo $i;?></td>
-                                                   <td><h5><?php echo $item->cr_name;?> >> <?php echo $item->bt_name;?></h5></td>
-                                                     <td><a href="<?php echo base_url('delete_batch/'.$item->bt_uuid);?>" >Delete</a></h5></td>
+                                                    <td><h5><?php echo $item->due_name;?></h5></td>
+                                                    <td> <button type="submit" data-url="delete_due" class="btn btn-danger remove"> Delete</button></td>
+                                                   
                                                 </tr>
                                                <?php } ?>
                                             </tbody>
@@ -90,3 +104,4 @@
                         </div>
                     </div> <!-- container-fluid -->
                 </div>
+				
