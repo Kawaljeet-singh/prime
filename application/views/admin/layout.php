@@ -305,6 +305,10 @@
 												 <i class="bx bxs-add-to-queue "></i>
 												<span key="t-contacts">Manage Duration</span>
 											</a>
+											<a href="<?php echo base_url('schedule');?>" class=" waves-effect">
+												 <i class="bx bxs-add-to-queue "></i>
+												<span key="t-contacts">Manage Schedule</span>
+											</a>
 										</li>
 									</ul>
 									

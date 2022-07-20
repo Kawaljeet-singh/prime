@@ -35,13 +35,13 @@
                                             </thead>
                                             <tbody>
                                                 <?php $i=0; foreach($all_courses as $item) { $i++;?>
-                                                <tr>
+                                                <tr id="<?php echo $item->cr_uuid;?>">
                                                     <td> <?php echo $i;?></td>
                                                    <td>
                                                         <h5><?php echo $item->cr_name;?></h5>
 													</td>
                                                     <td><h5><?php echo $item->cr_type;?></h5></td>
-                                                     <td><a href="<?php echo base_url('delete_course/'.$item->cr_uuid);?>" >Delete</a></h5></td>
+                                                     <td><button data-url="delete_course" >Delete</a></h5></td>
                                                 </tr>
                                                <?php } ?>
                                             </tbody>

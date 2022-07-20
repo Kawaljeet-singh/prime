@@ -14,7 +14,7 @@ class Manage_staff extends CI_Controller {
 	{
 		
 		$layout                = array();
-        $layout['system']   = $this->Dashboard_model->system('2');
+        $layout['system']   = $this->Dashboard_model->system('1');
         $layout['holi']   = $this->Dashboard_model->system('3');
         $layout['maincontent'] = $this->load->view('add_teacher', $layout, true);
         $this->load->view('admin/layout', $layout);

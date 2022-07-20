@@ -52,9 +52,9 @@ class Manage_walkins extends CI_Controller {
     }
     function fetch_schedule()
     {
-    if($this->input->post('course_id'))
+    if($this->input->post('due_id'))
     {
-    print_r( json_encode($this->Walkins_model->fetch_schedule($this->input->post('course_id'))));
+    print_r( json_encode($this->Walkins_model->fetch_schedule($this->input->post('due_id'))));
     }
     }
     function fetch_duration()
@@ -128,7 +128,7 @@ class Manage_walkins extends CI_Controller {
         $data['stu_state'] = $this->input->post('s_state');
         $data['stu_zip'] = $this->input->post('s_zip');
         $data['stu_created_by'] = $this->session->userdata('user_uuid');
-        $data['stu_status'] = '0';
+        $data['stu_status'] = '1';
 
         $sdata                       = array();
         $sdata['en_course']         = $this->input->post('course');

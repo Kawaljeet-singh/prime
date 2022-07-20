@@ -6,7 +6,7 @@ class Manage_student extends CI_Controller {
 	public function index()
 	{
 		$layout                = array();
-		$layout['all_student']   = $this->Student_model->getall_student_info();
+		$layout['all_student']   = $this->Student_model->getall_student_info(1);
         $layout['maincontent'] = $this->load->view('Student_list', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
@@ -48,6 +48,13 @@ class Manage_student extends CI_Controller {
         $layout['get_duration']   = $this->Course_model->getall_duration();
         $layout['all_items']   = $this->Stock_model->getall_stock_info();
         $layout['maincontent'] = $this->load->view('Enroll', $layout, true);
+        $this->load->view('admin/layout', $layout);
+	}
+	public function old_student()
+	{
+		$layout                = array();
+		$layout['all_student']   = $this->Student_model->getall_student_info(0);
+        $layout['maincontent'] = $this->load->view('Student_list', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
     function fetch_batch()

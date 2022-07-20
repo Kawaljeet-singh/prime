@@ -93,6 +93,7 @@ $route['delete_batch/(:any)'] = 'Manage_course/delete_batch/$1';
 $route['delete_due/(:any)'] = 'Manage_course/delete_due/$1';
 
 $route['Student_list']='Manage_student';
+$route['Old_Student_list']='Manage_student/old_student';
 $route['Visa_info_list']='Manage_study_visa';
 $route['idcard/(:any)']='Manage_student/idcard/$1';
 $route['student/(:any)']='Manage_student/student_info/$1';

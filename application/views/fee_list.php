@@ -31,8 +31,7 @@
                                                     <th scope="col">Total Fee</th>
                                                     <th scope="col">Paid Fee</th>
                                                     <th scope="col">Pending</th>
-													  <th class="align-middle">View Details</th>
-                                                    <th scope="col">Action</th>
+													  <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -45,12 +44,7 @@
 													</td>
                                                     <td><h5 class="text-success"><?php echo fee_format($item->fee_enroll);?></h5></td>
                                                     <td><?php if($item->fee_status ==0) { echo '<h5 class="text-info"> Full Paid';} else { echo '<h5 class="text-danger">'.fee_format($item->fee_status);}?></h5></td>
-                                                    <td>
-                                                            <!-- Button trigger modal -->
-                                                            <a class="btn btn-primary btn-sm btn-rounded" href="<?php echo base_url('fee_detail/'.$item->fee_stu_id);?>">
-                                                                View Details
-                                                            </a>
-                                                    </td>
+                                                   
                                                     <td>
                                                             <!-- Button trigger modal -->
                                                             <a class="btn btn-primary btn-sm btn-rounded" href="<?php echo base_url('add_fee/'.$item->fee_stu_id);?>">

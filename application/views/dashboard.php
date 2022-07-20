@@ -262,7 +262,7 @@
                                                     foreach($get_stock as $stk) 
                                                     {
                                                         $i++;?>
-                                                    <tr>
+                                                    <tr id="<?php echo $stk->st_uid;?>">
                                                     <td><?php echo $i?></td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-14"><a href="javascript: void(0);" class="text-dark"><?php echo $stk->st_item?></a></h5>
@@ -277,8 +277,8 @@
                                                         </td>
                                                         <td>
                                                             <div class="d-flex gap-3">
-                                                                <a href="javascript:void(0);" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                                                <a href="javascript:void(0);" class="text-danger"><i class="mdi mdi-delete font-size-18"></i></a>
+                                                                <a href="<?php echo base_url('add_quantity/'.$stk->st_uid);?>" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+                                                                <button data-url="delete_items" class="bg-white border-0 text-danger"><i class="mdi mdi-delete font-size-18"></i></button>
                                                             </div>
                                                         </td>
                                                         </tr>

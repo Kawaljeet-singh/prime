@@ -30,7 +30,7 @@ class Fee_model extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_student');
         $this->db->join('tbl_fee','tbl_fee.fee_stu_id=tbl_student.stu_uid');
-        $this->db->where(array('stu_id'=> $id,'stu_status'=>'0'));
+        $this->db->where(array('stu_id'=> $id,'stu_status'=>'1'));
         $info = $this->db->get();
         return $info->row();
     }

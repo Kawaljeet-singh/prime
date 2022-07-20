@@ -7,7 +7,7 @@ class Staff_model extends CI_Model
 
     public function getall_teacher_info()
     {
-        $dat=array("s_status"=>"1","s_designation"=>"2");
+        $dat=array("s_status"=>"1");
         $this->db->select('*');
         $this->db->from('tbl_staff');
         $this->db->where($dat);

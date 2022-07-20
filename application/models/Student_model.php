@@ -2,14 +2,15 @@
 
 class Student_model extends CI_Model
 {
-    public function getall_student_info()
+    public function getall_student_info($id)
     {
         $this->db->select('*');
         $this->db->from('tbl_student');
         $this->db->join('tbl_enrollment','tbl_enrollment.en_stu_uuid=tbl_student.stu_uid');
         $this->db->join('tbl_fee','tbl_fee.fee_stu_id=tbl_student.stu_uid');
-        $this->db->where(array('tbl_student.stu_interest'=>'3','tbl_student.stu_status'=>'1'));
+        $this->db->where(array('tbl_student.stu_interest'=>'3','tbl_student.stu_status'=>$id));
         $this->db->order_by('stu_id','DESC');
+        $this->db->group_by('stu_id');
         $info = $this->db->get();
         return $info->result();
     }
