@@ -113,6 +113,6 @@ class Manage_staff extends CI_Controller {
             $this->session->set_flashdata("email_sent","Congragulation Email Send Successfully.");
         else
             $this->session->set_flashdata("email_sent","You have encountered an error");
-        $this->load->view('contact_email_form');
+        
     }
 }
