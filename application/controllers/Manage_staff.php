@@ -19,7 +19,7 @@ class Manage_staff extends CI_Controller {
         $layout['maincontent'] = $this->load->view('add_teacher', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
-	public function save_teacher_info()
+	public function save_teacher_infos()
     {
         $data                       = array();
         $data['s_first_name']         = $this->input->post('firstname');
@@ -99,4 +99,20 @@ class Manage_staff extends CI_Controller {
         $layout['maincontent'] = $this->load->view('profile', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
+	    public function save_teacher_info() {
+        $from_email = "email@example.com";
+        $to_email = "kawaljit2191@gmail.com";
+        //Load email library
+        $this->load->library('email');
+        $this->email->from($from_email, 'Identification');
+        $this->email->to($to_email);
+        $this->email->subject('Send Email Codeigniter');
+        $this->email->message('The email send using codeigniter library');
+        //Send mail
+        if($this->email->send())
+            $this->session->set_flashdata("email_sent","Congragulation Email Send Successfully.");
+        else
+            $this->session->set_flashdata("email_sent","You have encountered an error");
+        $this->load->view('contact_email_form');
+    }
 }
