@@ -1,9 +1,6 @@
-
-            <div class="main-content">
-
+<div class="main-content">
                 <div class="page-content">
                     <div class="container-fluid">
-
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
@@ -14,13 +11,11 @@
                             </div>
                         </div>
                         <!-- end page title -->
-
                         <div class="row">
-                            
                             <div class="col-xl-4">
                                 <div class="card">
                                     <div class="card-body">
-                                         <form method="POST" action="<?php echo base_url('Manage_walkins/enroll_walkins_info');?>">
+                                       <form method="POST" action="<?php echo base_url('Manage_walkins/enroll_walkins_info');?>">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="mb-3 ">
@@ -37,15 +32,13 @@
                                             </div>
 
                                             <div class="row">
-                                                
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="formrow-email-input" class="form-label">Email</label>
                                                         <input type="email" name="s_email" class="form-control" id="formrow-email-input" value="<?php echo $get_info->stu_email;?>">
                                                     </div>
                                                 </div>
-												
-                                                <div class="col-md-6">
+												<div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="formrow-password-input" class="form-label">Phone number</label>
                                                         <input type="text" name="s_phone_a" class="form-control" id="formrow-password-input" value="<?php echo $get_info->stu_phone_a;?>">
@@ -146,109 +139,8 @@
                                 </div>
                                 <!-- end card -->
                             </div>
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-
-        $("#sel_course").change(function(){
-            var deptid = $(this).val();
-           
-            $.ajax({
-                url: '<?php echo base_url('fetch_batch')?>',
-                type: 'post',
-                data: {course_id:deptid},
-                dataType: 'json',
-                success:function(response){
-                    var ss=response.ss;
-                    var bss=response.bb;
-                    var len = ss.length;
-                    var blen = bss.length;
-                    var second = document.getElementById("myDIV");
-                    second.innerHTML='';
-                    $("#batch_list").empty();
-                    $("#batch_list").prop('disabled', false);
-                    
-                    for( var i = 0; i<len; i++){
-                        var uid = ss[i]['bt_uuid'];
-                        var name = ss[i]['bt_name'];
-
-                        $("#batch_list").append("<option value='"+uid+"'>"+name+"</option>");
-
-                    }
-                    for( var i = 0; i<blen; i++){
-                        var id = bss[i]['sch_uuid'];
-                        var str_tme = bss[i]['sch_strt_time'];
-                        var lst_tme = bss[i]['sch_lst_time'];
-                        var uuid = bss[i]['sch_uuid'];
-                        second.innerHTML = '<div class="card border border-success"><div class="card-body"><h5>'+str_tme+'</h5><h6>10 seats Left</h6><h6>'+str_tme+'-'+lst_tme+'</h6><p>Mon-Tue-wed-thur-fri-sat</p><input class="form-check-input" type="radio" onclick="peso(name);" name="'+uuid+'" value="'+uuid+'"><label class="form-check-label" for="inlineRadio2">&nbsp;Book</label></div></div>';
-                    }
-                    
-                }
-            });
-        });
-        
-        $("#batch_list").change(function(){
-            var deptid = $(this).val();
-
-            $.ajax({
-                url: '<?php echo base_url('fetch_duration')?>',
-                type: 'post',
-                data: {batch_id:deptid},
-                dataType: 'json',
-                success:function(response){
-
-                    var len = response.length;
-
-                    $("#duration_list").empty();
-                    $("#duration_list").prop('disabled', false);
-                    for( var i = 0; i<len; i++){
-                        var id = response[i]['due_uuid'];
-                        var name = response[i]['due_name'];
-
-                        $("#duration_list").append("<option value='"+id+"'>"+name+"</option>");
-
-                    }
-                }
-            });
-        });
-        $("#duration_list").change(function(){
-            var deptid = $(this).val();
-
-            $.ajax({
-                url: '<?php echo base_url('fetch_fee')?>',
-                type: 'post',
-                data: {due_id:deptid},
-                dataType: 'json',
-                success:function(response){
-                   
-                        $("#total_fee").val(response['due_fee']);
-                }
-            });
-        });
-    });
-    function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}   function reSum()
-        {
-            var num1 = parseInt(document.getElementById("total_fee").value);
-            var num2 = parseInt(document.getElementById("paid_fee").value);
-            document.getElementById("due_fee").value = num1 - num2;
-            $("#submit_button").prop('disabled', false);
-        }
-        function peso(name){
-        var elem = document.getElementById("batch_id");
-       elem.value=name;
-        console.log("Choice: ", name);
-       
-        };
-</script>
-<input type="hidden" name="batch_id" id="batch_id">
+                           
+<input type="s" name="class_id" id="class_id">
                             <!-- end col -->
                             <div class="col-xl-8">
                                 <div class="card">
@@ -323,9 +215,10 @@
                                                         </div>
                                                     </div>
 													<div class="col-md-8">
-													<div class="row">
-														<div class="col-lg-4" id="myDIV">
-														</div>
+													<div class="row" id="myDIV">
+														
+														
+														
 													</div>        
 													</div>
                                             </div>
@@ -342,4 +235,122 @@
                     </div> <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->
-                
+                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#sel_course").change(function(){
+            var deptid = $(this).val();
+           
+            $.ajax({
+                url: '<?php echo base_url('fetch_batch')?>',
+                type: 'post',
+                data: {course_id:deptid},
+                dataType: 'json',
+                success:function(response){
+                    
+                    var len = response.length;
+                   
+                    $("#batch_list").empty();
+                    $("#batch_list").prop('disabled', false);
+                    
+                    for( var i = 0; i<len; i++){
+                        var uid = response[i]['bt_uuid'];
+                        var name = response[i]['bt_name'];
+
+                        $("#batch_list").append("<option value='"+uid+"'>"+name+"</option>");
+
+                    }
+                    
+                    
+                }
+            });
+        });
+        
+        $("#batch_list").change(function(){
+            var deptid = $(this).val();
+
+            $.ajax({
+                url: '<?php echo base_url('fetch_duration')?>',
+                type: 'post',
+                data: {batch_id:deptid},
+                dataType: 'json',
+                success:function(response){
+
+                    var len = response.length;
+
+                    $("#duration_list").empty();
+                    $("#duration_list").prop('disabled', false);
+                    for( var i = 0; i<len; i++){
+                        var id = response[i]['due_uuid'];
+                        var name = response[i]['due_name'];
+
+                        $("#duration_list").append("<option value='"+id+"'>"+name+"</option>");
+
+                    }
+                }
+            });
+        });
+        $("#duration_list").change(function(){
+            var deptid = $(this).val();
+			var second = document.getElementById("myDIV");
+						second.innerHTML='';
+            $.ajax({
+                url: '<?php echo base_url('fetch_fee')?>',
+                type: 'post',
+                data: {due_id:deptid},
+                dataType: 'json',
+                success:function(response){
+					 
+                        $("#total_fee").val(response.ss['due_fee']);
+						
+						var bss=response.bb;
+						var blen = bss.length; 
+                       
+						for( var i = 0; i<blen; i++){
+                        var id = bss[i]['sch_uuid'];
+                        var str_tme = bss[i]['sch_strt_time'];
+                        var lst_tme = bss[i]['sch_lst_time'];
+                        var stu_limit =bss[i]['sch_student_limit'];
+                        var stu_left = bss[i]['sh_left_stu'];
+						var left_seat = stu_limit - stu_left;
+                        var classname = bss[i]['sch_class_name'];
+                        var uuid = bss[i]['sch_uuid'];
+                        var days = bss[i]['sh_day'];
+						if(left_seat != '0')
+						{
+						var book='<input class="form-check-input" type="radio" onclick="peso(name);" name="'+uuid+'" value="'+uuid+'"><label class="form-check-label" for="inlineRadio2">&nbsp;Book</label>';
+						}
+						else
+						{
+							var book='Class Full';
+						}
+						
+                         $("#myDIV").append('<div class="col-lg-4"><div class="card border border-success"><div class="card-body"><h5>'+classname+'</h5><h6>'+left_seat+' seats Left</h6><h6>'+str_tme+'-'+lst_tme+'</h6><p>'+days+'</p>'+book+'</div></div></div>');
+                    }
+                }
+            });
+        });
+    });
+    function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}   function reSum()
+        {
+            var num1 = parseInt(document.getElementById("total_fee").value);
+            var num2 = parseInt(document.getElementById("paid_fee").value);
+            document.getElementById("due_fee").value = num1 - num2;
+            $("#submit_button").prop('disabled', false);
+        }
+        function peso(name){
+        var elem = document.getElementById("class_id");
+       elem.value=name;
+        console.log("Choice: ", name);
+       
+        };
+</script>

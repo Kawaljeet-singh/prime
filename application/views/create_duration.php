@@ -50,7 +50,7 @@
                                                    <?php foreach($days as $day)
                                                     {
                                                         echo '<div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="'.$day->sc_id.'" name=
+                                                        <input class="form-check-input" type="checkbox" value="'.$day->sc_name.'" name=
 														"days[]" id="flexCheckDefault">
                                                         <label class="form-check-label" for="flexCheckDefault">
                                                           '.$day->sc_name.'

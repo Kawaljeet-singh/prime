@@ -121,16 +121,21 @@ class Manage_course extends CI_Controller {
     }
     public function save_schedule()
     {
-        $data                       = array();
-        $data['sch_course_id']         = $this->input->post('course_id');
-        $data['sch_strt_time'] = $this->input->post('s_time');
-        $data['sch_lst_time'] = $this->input->post('l_time');
-        $data['sch_created_by'] = $this->session->userdata('user_uuid');
-        $data['sch_days'] = $this->input->post('days');
-        $data['sch_student_limit'] = $this->input->post('limit');
+		for ($i = 0; $i < count($this->input->post('s_time')); $i++) 
+				{
+					
+					$data                       = array();
+					$data['sch_course_id'] = $this->input->post('du_id');
+					$data['sch_class_name'] = $this->input->post('cname')[$i];
+					$data['sch_strt_time'] = $this->input->post('s_time')[$i] .' '.$this->input->post('t-1')[$i] ;
+					$data['sch_lst_time'] = $this->input->post('l_time')[$i] .' '.$this->input->post('t-2')[$i];
+					$data['sch_created_by'] = $this->session->userdata('user_uuid');
+					$data['sch_student_limit'] = $this->input->post('limit')[$i];
+					$data['sh_day'] = $this->input->post('day');
+					$result = $this->Course_model->save_schedule($data);
+
+				}	
        
-        
-        $result = $this->Course_model->save_schedule($data);
         if ($result) {
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Record added successfully.
@@ -140,7 +145,7 @@ class Manage_course extends CI_Controller {
             Record created failed! Try again
                                         </div>'); 
         }
-        redirect('add_course');
+        redirect('schedule');
     }
 	public function pending_fee()
 	{

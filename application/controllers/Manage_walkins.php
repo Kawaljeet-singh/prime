@@ -47,7 +47,7 @@ class Manage_walkins extends CI_Controller {
    
         $obj_merged =array(
         'ss'=> $ss, 'bb'=> $bb);
-        print_r(json_encode($obj_merged));
+        print_r(json_encode($ss));
     }
     }
     function fetch_schedule()
@@ -68,7 +68,11 @@ class Manage_walkins extends CI_Controller {
     {
         if($this->input->post('due_id'))
         {
-        print_r( json_encode($this->Walkins_model->fetch_fee($this->input->post('due_id'))));
+			$ss=$this->Walkins_model->fetch_fee($this->input->post('due_id'));
+			$bb=$this->Walkins_model->fetch_schedule($this->input->post('due_id'));
+			 $obj_merged =array(
+			'ss'=> $ss, 'bb'=> $bb);
+			print_r( json_encode($obj_merged));
         }
     }
 	public function save_walkins_info()
@@ -137,9 +141,10 @@ class Manage_walkins extends CI_Controller {
         $sdata['en_paid'] = $this->input->post('fee_paid');
         $sdata['en_payment_type'] = $this->input->post('pay_mode');
         $sdata['en_stu_uuid'] = $this->input->post('stu_uuid');
-        $sdata['en_assign_class'] = $this->input->post('batch_id');
+        $sdata['en_assign_class'] = $this->input->post('class_id');
+        $sdata['en_class_id'] = $this->input->post('class_id');
         $sdata['en_created_by'] = $this->session->userdata('user_uuid');
-
+			$this->Course_model->addstu_cource($this->input->post('class_id'));
             $ndata=array();
 		    $ndata['noti_msg']='New Enrolled';
 		    $ndata['noti_title']=$this->input->post('s_first_name').'&nbsp;'.$this->input->post('s_last_name');

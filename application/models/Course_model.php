@@ -61,8 +61,11 @@ class Course_model extends CI_Model
          $this->db->insert('tbl_schedule', $data);
 		return $this->db->insert_id();
     }
-   
-
+	public function addstu_cource($id){  
+	$this->db->where('sch_uuid', $id);
+	$this->db->set('sh_left_stu', 'sh_left_stu + 1', FALSE);
+	$this->db->update('tbl_schedule');
+	}
     public function deactive_cource($id)
     {
         $this->db->set('cr_status', 0);

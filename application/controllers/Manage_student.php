@@ -57,27 +57,7 @@ class Manage_student extends CI_Controller {
         $layout['maincontent'] = $this->load->view('Student_list', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
-    function fetch_batch()
-    {
-    if($this->input->post('course_id'))
-    {
-    print_r( json_encode($this->Walkins_model->fetch_batch($this->input->post('course_id'))));
-    }
-    }
-    function fetch_duration()
-    {
-    if($this->input->post('batch_id'))
-    {
-    print_r( json_encode($this->Walkins_model->fetch_duration($this->input->post('batch_id'))));
-    }
-    }
-    function fetch_fee()
-    {
-        if($this->input->post('due_id'))
-        {
-        print_r( json_encode($this->Walkins_model->fetch_fee($this->input->post('due_id'))));
-        }
-    }
+   
 
     
 }

@@ -14,45 +14,80 @@
                                          <div class="row mb-5">
                                     <div class="col-12">
                                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                            <h4 class="mb-sm-0 font-size-18">Add Batch</h4>
+                                            <h4 class="mb-sm-0 font-size-18">Add Schedule</h4>
                                           
                                         </div>
                                     </div>
-                                     <form method="POST" action="<?php echo base_url('Manage_course/save_batch');?>" autocomplete="off">
+                                     <form method="POST" action="<?php echo base_url('Manage_course/save_schedule');?>" autocomplete="off">
 											<div class="row">
 												<div class="col-md-8">
 													<div class="mb-3">
 													    	<label for="formrow-firstname-input" class="form-label">Select course</label>
-													    <select class="form-control" id="duration_list" >
+													    <select class="form-control" name="du_id" id="duration_list" >
 													        <?php foreach($get_schedule as $cs)
 													        {
 														echo '<option value="'.$cs->due_uuid.'">'.$cs->cr_name.'  >>  '.$cs->bt_name .'  >>  '.$cs->due_name.'</option>';
 													        }?>
 													    </select>
                                                     </div>
-												</div>
-												<div class="col-md-8">
-													<div class="mb-3 ">
-														<label for="formrow-firstname-input" class="form-label">Batch Name</label>
-														<select class="form-control" id="due_list" >
+													<label for="formrow-firstname-input" class="form-label">Day</label>
+														<select class="form-control" name="day" id="due_list" >
 														</select>
-														<div class="row"><div class="optionBox">
-    <div class="block">
-        <input type="text" /> <span class="remove">Remove Option</span>
-    </div>
-    <div class="block">
-        <input type="text" /> <span class="remove">Remove Option</span>
-    </div>
-    <div class="block">
-        <span class="add">Add Option</span>
-    </div>
-</div>
+												</div>
+												
+												<div class="col-md-12">
+													<div class="mb-3 ">
+														
+														<div class="row mt-2">
+															<div class="col-lg-2">
+															<label class="form-label">Start Time</label>
+															</div>
+															<div class="col-lg-1">
+															<label class="form-label"></label>
+															</div>															
+															<div class="col-lg-2">
+															<label  class="form-label">End Time</label>
+															</div>
+															<div class="col-lg-1">
+															<label class="form-label"></label>
+															</div>
+															<div class="col-lg-2">
+															<label  class="form-label">Stu. Limit</label>
+															</div>
+															<div class="col-lg-2">
+															<label  class="form-label">Class Name</label>
+															</div>															
+														<div class="optionBox">
+															<div class="block row">
+															<div class="col-lg-2">
+															<input class="form-control" name="s_time[]" type="text" />
+															</div>
+															<div class="col-lg-1 p-0">
+															<select class="form-control" name="t-1[]" >
+															<option value="AM">AM</option>
+															<option value="PM">PM</option>
+															</select>
+															</div>
+															<div class="col-lg-2"><input name="l_time[]" class="form-control" type="text" /></div>
+															<div class="col-lg-1 p-0">
+															<select class="form-control " name="t-2[]" >
+															<option value="AM">AM</option>
+															<option value="PM">PM</option>
+															</select>
+															</div>
+															<div class="col-lg-2"><input name="limit[]" class="form-control" type="text" /></div>
+															<div class="col-lg-2"><input name="cname[]" class="form-control" type="text" /></div>
+															</div>
+															<div class="block mt-2">
+																<span class="btn btn-success add">Add Row</span>
+															</div>
+														</div>
  
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 $('.add').click(function() {
-    $('.block:last').before('<div class="block"><input type="text" /><span class="remove">Remove Option</span></div>');
+    $('.block:last').before('<div class="block row mt-2 "><div class="col-lg-2"><input class="form-control" name="s_time[]" type="text" /></div><div class="col-lg-1 p-0"><select class="form-control" name="t-1[]" ><option value="AM">AM</option><option value="PM">PM</option></select></div><div class="col-lg-2"><input class="form-control" name="l_time[]" type="text" /></div><div class="col-lg-1 p-0"><select class="form-control" name="t-1[]" ><option value="AM">AM</option><option value="PM">PM</option></select></div><div class="col-lg-2"><input name="limit[]" class="form-control" type="text" /></div> <div class="col-lg-2"><input name="cname[]" class="form-control" type="text" /></div><span class="remove col-lg-2 btn btn-danger">Remove</span></div>');
 });
 $('.optionBox').on('click','.remove',function() {
             $(this).parent().remove();
@@ -117,7 +152,7 @@ $('.optionBox').on('click','.remove',function() {
                 success:function(response){
 						
 						$("#due_list").empty();
-						var s = response['due_day'];
+						var s = response.ss['due_day'];
 							var match = s.split(',')
 							console.log(match)
 							for (var a in match)
