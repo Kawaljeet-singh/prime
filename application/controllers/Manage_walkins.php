@@ -92,6 +92,7 @@ class Manage_walkins extends CI_Controller {
         $data['stu_address'] = $this->input->post('s_address');
         $data['stu_city'] = $this->input->post('s_city');
         $data['stu_state'] = $this->input->post('s_state');
+        $data['stu_status'] = '0';
         $data['stu_zip'] = $this->input->post('s_zip');
         $data['stu_created_by'] = $this->session->userdata('user_uuid');
         $result = $this->Walkins_model->save_walkins_info($data);

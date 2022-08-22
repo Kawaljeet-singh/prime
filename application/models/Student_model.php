@@ -4,7 +4,7 @@ class Student_model extends CI_Model
 {
     public function getall_student_info($id)
     {
-        $this->db->select('*');
+        $this->db->select('*,SUM(fee_fees) AS paid');
         $this->db->from('tbl_student');
         $this->db->join('tbl_enrollment','tbl_enrollment.en_stu_uuid=tbl_student.stu_uid');
         $this->db->join('tbl_fee','tbl_fee.fee_stu_id=tbl_student.stu_uid');
@@ -45,16 +45,23 @@ class Student_model extends CI_Model
     public function student_info($id)
     {
         $this->db->select('*');
-        $this->db->from('tbl_enrollment');
-         $this->db->join('tbl_student','tbl_enrollment.en_stu_uuid=tbl_student.stu_uid');
-         $this->db->join('tbl_courses','tbl_enrollment.en_course=tbl_courses.cr_uuid');
-         $this->db->join('tbl_batch','tbl_enrollment.en_batch=tbl_batch.bt_uuid');
-         $this->db->join('tbl_duration','tbl_enrollment.en_duration=tbl_duration.due_uuid');
-         $this->db->where(array('tbl_enrollment.en_stu_uuid'=> $id,'stu_status'=>'1'));
+        $this->db->from('tbl_student');
+          $this->db->where(array('stu_uid'=> $id,'stu_status'=>'1'));
         $info = $this->db->get();
         return $info->row();
     }
-
+		 public function study_info($id)
+		 {
+			$this->db->select('*');
+			$this->db->from('tbl_enrollment');
+			$this->db->where(array('tbl_enrollment.en_stu_uuid'=> $id));
+			$this->db->join('tbl_courses','tbl_enrollment.en_course=tbl_courses.cr_uuid');
+			$this->db->join('tbl_batch','tbl_enrollment.en_batch=tbl_batch.bt_uuid');
+			$this->db->join('tbl_duration','tbl_enrollment.en_duration=tbl_duration.due_uuid');
+			$this->db->join('tbl_schedule','tbl_enrollment.en_class_id=tbl_schedule.sch_uuid');
+			
+		  return $this->db->get()->result();
+		 }
     function fetch_batch($id)
     {
      $this->db->where('bt_course_id', $id);

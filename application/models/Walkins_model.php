@@ -6,7 +6,7 @@ class Walkins_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_student');
-        $this->db->where('stu_status','1');
+        $this->db->where('stu_status','0');
         $this->db->order_by('stu_id','DESC');
         $info = $this->db->get();
         return $info->result();

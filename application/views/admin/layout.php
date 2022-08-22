@@ -236,6 +236,12 @@
 												<span key="t-contacts">Student Visa list</span>
 											</a>
 										</li>
+										<li>
+											<a href="<?php echo base_url('Old_Student_list');?>" class=" waves-effect">
+												<i class="bx bxs-user-detail"></i>
+												<span key="t-contacts">Old Student</span>
+											</a>
+										</li>
 									</ul>
 									
 								</li>

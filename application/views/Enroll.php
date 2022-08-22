@@ -140,7 +140,7 @@
                                 <!-- end card -->
                             </div>
                            
-<input type="s" name="class_id" id="class_id">
+<input type="hidden" name="class_id" id="class_id">
                             <!-- end col -->
                             <div class="col-xl-8">
                                 <div class="card">

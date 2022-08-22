@@ -21,6 +21,7 @@ class Manage_student extends CI_Controller {
 	{
 		$layout                = array();
         $layout['get_info']   = $this->Student_model->student_info($id);
+        $layout['study_info']   = $this->Student_model->study_info($id);
         $layout['maincontent'] = $this->load->view('student_info', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}

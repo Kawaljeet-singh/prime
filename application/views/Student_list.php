@@ -72,7 +72,7 @@
                                                         <td><?php echo get_batchname($stu->en_batch);?></td>
                                                         <td><?php echo $stu->fee_enroll;?></td>
                                                         <td><?php echo $stu->fee_status;?></td>
-                                                        <td><?php echo $stu->fee_fees;?></td>
+                                                        <td><?php echo $stu->paid;?></td>
                                                         <td>
                                                         <ul class="list-inline font-size-20 contact-links mb-0">
                                                             <li class="list-inline-item px-2">

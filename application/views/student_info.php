@@ -89,18 +89,28 @@
                                             <table class="table table-nowrap mb-0">
                                                 <tbody>
                                                     <tr>
-                                                        <th scope="row">Course Name :</th>
-                                                        <td><?php echo $get_info->cr_name;?></td>
+                                                        <th>Course Name :</th>
+                                                        <th>Batch Name :</th>
+                                                        <th>Duration:</th>
+                                                        <th>Schedule:</th>
+                                                         
                                                      </tr>
-                                                    <tr>
-                                                        <th scope="row">Batch Name :</th>
-                                                        <td><?php echo $get_info->bt_name;?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Duration :</th>
-                                                        <td><?php echo $get_info->due_name;?></td>
-                                                    </tr>
+                                                   
                                                      
+														<?php 
+														foreach($study_info as $ss)
+														{
+														?>
+<tr>
+														<td><?php echo $ss->cr_name?>(<?php echo $ss->cr_type?>)</td>
+                                                        <td><?php echo $ss->bt_name?></td>
+                                                        <td><?php echo $ss->due_name?></td>
+                                                        <td><?php echo $ss->sch_strt_time.'-'.$ss->sch_lst_time?></td>
+														</tr>
+<?php
+														}
+														?>
+						     
                                                     
                                                 </tbody>
                                             </table>
@@ -112,7 +122,6 @@
                         
                                 <!-- end card -->
                             </div>         
-                            
                            
                         </div>
                         <!-- end row -->
