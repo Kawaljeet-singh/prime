@@ -63,7 +63,7 @@ function get_profile($para){
       $op = & get_instance();
       $op->db->select('*');
       $op->db->from('tbl_notification');
-      $op->db->where('noti_status','1');
+      $op->db->where('noti_status','0');
       $op->db->order_by('noti_id','DESC');
       $info = $op->db->get();
       return $info->result();

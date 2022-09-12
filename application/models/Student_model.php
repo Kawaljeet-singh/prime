@@ -46,7 +46,7 @@ class Student_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_student');
-          $this->db->where(array('stu_uid'=> $id,'stu_status'=>'1'));
+          $this->db->where(array('stu_uid'=> $id,'stu_status'=>'0'));
         $info = $this->db->get();
         return $info->row();
     }
