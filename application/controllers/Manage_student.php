@@ -54,7 +54,7 @@ class Manage_student extends CI_Controller {
 	public function old_student()
 	{
 		$layout                = array();
-		$layout['all_student']   = $this->Student_model->getall_student_info(0);
+		$layout['all_student']   = $this->Student_model->getall_student_info(3);
         $layout['maincontent'] = $this->load->view('Student_list', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
