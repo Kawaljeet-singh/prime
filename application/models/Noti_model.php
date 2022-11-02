@@ -22,4 +22,17 @@ class Noti_model extends CI_Model
         $info = $this->db->get();
         return $info->result();
     }
+	 public function add_attachment($data)
+    {
+        $this->db->set('attach_uid', 'UUID()', FALSE);
+        $this->db->insert('tbl_attachment', $data);
+		$id=$this->db->insert_id();
+		  
+	   $this->db->select('attach_uid');
+	   $this->db->where('attach_id',$id);
+	   $this->db->from('tbl_attachment');
+	   $res = $this->db->get();
+	   $result =  $res->row();
+	  return $result->attach_uid;
+	}
 }

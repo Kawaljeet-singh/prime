@@ -23,7 +23,7 @@
                                             <div class="col-7">
                                             </div>
                                             <div class="col-5 align-self-end">
-                                                <img src="<?php echo base_url('assets/images/profile-img.png')?>" alt="" class="img-fluid">
+                                                <img src="<?php echo base_url('profile/')?>" alt="" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>

@@ -6,8 +6,7 @@ function get_profile($para){
    $op->db->select($para);
    $op->db->from('tbl_staff');
    $res = $op->db->get();
-   $result =  $res->row();
-   
+   $result =  $res->row();  
    echo $result->$para;
 }
 
@@ -26,7 +25,6 @@ function get_profile($para){
  function get_photo($id)
  {
    $CI =& get_instance();
-  
    $op = & get_instance();
    $op->db->select('attach_name');
    $op->db->where('attach_uid',$id);
@@ -37,8 +35,7 @@ function get_profile($para){
  }
   function get_name($id)
  {
-   $CI =& get_instance();
-  
+   $CI =& get_instance(); 
    $op = & get_instance();
    $op->db->select('*');
    $op->db->where('staff_uid',$id);

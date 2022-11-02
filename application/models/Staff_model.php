@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 class Staff_model extends CI_Model
 {
@@ -17,8 +17,14 @@ class Staff_model extends CI_Model
 	public function save_teacher_info($data)
     {
 		$this->db->set('staff_uid', 'UUID()', FALSE);
-         $this->db->insert('tbl_staff', $data);
+        $this->db->insert('tbl_staff', $data);
 		return $this->db->insert_id();
+    }
+	public function update_teacher_info($data,$id)
+    {
+		$this->db->where('staff_uid', $id);
+		return  $this->db->update('tbl_staff', $data);
+
     }
     public function view_teacher_info($id)
     {

@@ -150,11 +150,7 @@
                                             <ul class="list-group list-group-flush">
                                                 <?php 
                                                 $indexedArray = array("bg-warning", "bg-success", "bg-info", "bg-danger");
-                                                foreach($get_counselor as $stk) 
-                                                    {
-                                                        
-                                                        $a=$dashboard->work($stk->staff_uid);
-                                                        function get_percentage($total, $number)
+												function get_percentage($total, $number)
                                                             {
                                                               if ( $total > 0 ) {
                                                                return round(($number * 100) / $total, 2);
@@ -162,6 +158,11 @@
                                                                 return 0;
                                                               }
                                                             }
+                                                foreach($get_counselor as $stk) 
+                                                    {
+                                                        
+                                                        $a=$dashboard->work($stk->staff_uid);
+                                                        
                                                         
                                                 ?>
                                                 <li class="list-group-item">

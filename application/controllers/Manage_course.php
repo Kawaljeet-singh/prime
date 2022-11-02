@@ -205,7 +205,7 @@ class Manage_course extends CI_Controller {
 	        return 'Added';
 	    }
 	}
-    public function update_fee()
+    public function update_fee($id)
 	{
 	    $stu=$this->Fee_model->student_info($this->input->post('st_id'));
 	    $id=$stu->stu_uid;

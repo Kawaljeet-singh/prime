@@ -90,6 +90,81 @@ class Manage_staff extends CI_Controller {
         }
 
     }
+	public function update_teacher_info($id)
+    {
+        $data                       = array();
+        $data['s_first_name']         = $this->input->post('firstname');
+        $data['s_last_name']  = $this->input->post('lastname');
+        $data['s_email'] = $this->input->post('email');
+        $data['s_phone'] = $this->input->post('phone');
+        $data['s_doj'] = $this->input->post('doj');
+        $data['s_dob'] = $this->input->post('dob');
+        $data['s_designation'] = $this->input->post('designation');
+        $data['s_holiday'] = $this->input->post('holiday');
+        $data['s_salary'] = $this->input->post('salary');
+        $data['s_security'] = $this->input->post('security');
+        $data['s_address'] = $this->input->post('address');
+        $data['s_city'] = $this->input->post('city');
+        $data['s_zip'] = $this->input->post('zip');
+        $data['created_by'] = $this->session->userdata('user_uuid');    
+
+        $this->form_validation->set_rules('firstname', 'First Name', 'trim|required');
+        $this->form_validation->set_rules('lastname', 'Last Name', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required');
+        $this->form_validation->set_rules('phone', 'Phone', 'trim|required');
+        $this->form_validation->set_rules('doj', 'Date of Joining', 'trim|required');
+        $this->form_validation->set_rules('dob', 'Date of Birth', 'trim|required');
+        $this->form_validation->set_rules('designation', 'Designation', 'trim|required');
+        $this->form_validation->set_rules('holiday', 'Holiday', 'trim|required');
+        $this->form_validation->set_rules('salary', 'Salary', 'trim|required');
+        $this->form_validation->set_rules('security', 'Security', 'trim|required');
+        $this->form_validation->set_rules('address', 'address', 'trim|required');
+        $this->form_validation->set_rules('city', 'city', 'trim|required');
+        $this->form_validation->set_rules('zip', 'zip', 'trim|required');
+
+		if (!empty($_FILES['photo']['name'])) {
+            $config['upload_path']   = './profile/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']      = 4096;
+            $config['max_width']     = 2000;
+            $config['max_height']    = 2000;
+
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('photo')) {
+                $error = $this->upload->display_errors();
+                $this->session->set_flashdata('message', $error);
+                redirect('add_teacher');
+            } else {
+                $post_image            = $this->upload->data();
+				$attach['attach_name'] = $post_image['file_name'];
+                $attach['attach_type'] = $post_image['file_type'];
+                $attach['attach_size'] = $post_image['file_size'];
+				$im=$this->Noti_model->add_attachment($attach);
+				$data['attachment_id'] = $im;
+            }
+        }
+        if ($this->form_validation->run() == true) {
+            $result = $this->Staff_model->update_teacher_info($data,$id);
+            if ($result) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                                                Teacher ID created. Password will sent to email OR phone number.
+                                            </div>');
+                redirect('edit_staff/'.$id);
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                                                Teacher created failed! Try again
+                                            </div>');
+                redirect('edit_staff/'.$id);
+            }
+        } else {
+            $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+                                                '.validation_errors().'
+                                            </div>' );
+            redirect('edit_staff/'.$id);
+        }
+
+    }
     public function view_teacher($id)
 	{
 		
@@ -97,6 +172,17 @@ class Manage_staff extends CI_Controller {
         $layout['staff_info']   = $this->Staff_model->view_teacher_info($id);
         $layout['sch_info']   = $this->Staff_model->getall_schedule_info($id);
         $layout['maincontent'] = $this->load->view('profile', $layout, true);
+        $this->load->view('admin/layout', $layout);
+	}
+	public function edit_teacher($id)
+	{
+		
+		$layout                = array();
+        $layout['staff_info']   = $this->Staff_model->view_teacher_info($id);
+		 $layout['system']   = $this->Dashboard_model->system('1');
+        $layout['holi']   = $this->Dashboard_model->system('3');
+        $layout['sch_info']   = $this->Staff_model->getall_schedule_info($id);
+        $layout['maincontent'] = $this->load->view('edit_teacher', $layout, true);
         $this->load->view('admin/layout', $layout);
 	}
 }

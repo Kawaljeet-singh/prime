@@ -38,7 +38,7 @@
                                         <div class="row">
                                             <div class="col-sm-4">
                                                 <div class="avatar-md profile-user-wid mb-4">
-                                                    <img src="<?php echo base_url('assets/images/users/');get_photo($staff_info->attachment_id);?>" alt="" class="img-thumbnail rounded-circle">
+                                                    <img src="<?php echo base_url('profile/').get_photo($staff_info->attachment_id);?>" alt="" class="img-thumbnail rounded-circle">
                                                 </div>
                                                 <h5 class="font-size-15 text-truncate"><?php echo $staff_info->s_first_name.'&nbsp;'.$staff_info->s_last_name;?></h5>
                                                 <p class="text-muted mb-0 text-truncate"><?php echo get_sys($staff_info->s_designation)?></p>
